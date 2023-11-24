@@ -28,7 +28,8 @@ public class AuthorizationController : ControllerBase
         var claims = new List<Claim>
         {
             new Claim(ClaimsIdentity.DefaultNameClaimType, user.Username),
-            new Claim(ClaimsIdentity.DefaultRoleClaimType, user.isAdmin ? "admin" : "user")
+            new Claim(ClaimsIdentity.DefaultRoleClaimType, user.isAdmin ? "admin" : "user"),
+            new Claim("Id",user.Id.ToString())
         };
         var claimsIdentity =
             new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType,
