@@ -32,7 +32,7 @@ public class Factory : IDesignTimeDbContextFactory<DataContext>
     public DataContext CreateDbContext(string[] args)
     {
         var options = new DbContextOptionsBuilder()
-            .UseNpgsql("Host=localhost; Database=hakaton; Username=admin; Password=admin")
+            .UseNpgsql("Host=81.200.152.184; Database=hakaton; Username=gen_user; Password=-Pz(via5i<{=*n")
             .Options;
 
         return new DataContext(options);
