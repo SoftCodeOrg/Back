@@ -11,7 +11,7 @@ public static class Bootstraps
 {
     public static IServiceCollection AddData(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddScoped<IUsersService, UsersService>();
+        services.AddScoped<IUserService, UserService>();
         services.AddScoped<ISubjectService, SubjectsService>();
         services.AddDbContext<DataContext>(options =>
                                                options.UseNpgsql(

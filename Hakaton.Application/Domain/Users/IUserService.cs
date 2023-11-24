@@ -1,6 +1,6 @@
 namespace Hakaton.Application.Domain.Users;
 
-public interface IUsersService
+public interface IUserService
 {
     public Task<User> Registration(
         string username,

@@ -1,4 +1,4 @@
-using Hakaton.Application.Domain.Subjects.Model;
+using Hakaton_UUNIT.Dtos;
 using Hakaton.Application.Domain.Subjects.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,9 +16,30 @@ public class SubjectsController : ControllerBase
     }
 
     [HttpGet]
-    [ProducesResponseType(typeof(List<Subject>),200)]
-    public async Task<List<Subject>> AllSubjects()
+    [ProducesResponseType(typeof(List<SubjectModel>),200)]
+    public async Task<List<SubjectModel>> AllSubjects()
     {
-        return await _subjectService.GetAll();
+        return (await _subjectService.GetAll()).Select(it=> new SubjectModel
+        {
+            Title = it.Title,
+            Description = it.Description,
+            ImgUrl = it.ImageUrl,
+            CurrentProgress = 0,
+            MaxProgress = it.Tests is not null ? it.MaxProgress.Value : 1
+        }).ToList();
+    }
+
+    [HttpPost]
+    public async Task<SubjectModel> AddSubject(SubjectAddModel model)
+    {
+        var subject = await _subjectService.Add(model.Title, model.Description, model.ImageUrl);
+        return new SubjectModel
+        {
+            Title = subject.Title,
+            Description = subject.Description,
+            ImgUrl = subject.ImageUrl,
+            CurrentProgress = 0,
+            MaxProgress = 1
+        };
     }
 }
