@@ -1,9 +1,11 @@
 using Hakaton.Application.Domain.Subjects.Model;
+using Hakaton.Application.Helpers;
 
 namespace Hakaton.Application.Domain.Subjects.Services;
 
 public interface ISubjectService
 {
-    public Task<List<Subject>> GetAll();
-    public Task<Subject> Add(string title, string description, string imageUrl);
+    public Task<List<Subject>> GetAllAsync();
+    public Task<Subject> AddAsync(string title, string description, string imageUrl);
+    public Task<OperationResult> RemoveAsync(Guid id);
 }

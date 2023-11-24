@@ -9,4 +9,5 @@ public class Test
     public Guid Id { get; set; }
     
     public List<Question>? Questions { get; set; }
+    public int? MaxProgress => Questions.Count;
 }

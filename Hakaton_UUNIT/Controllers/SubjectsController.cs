@@ -1,5 +1,6 @@
 using Hakaton_UUNIT.Dtos;
 using Hakaton.Application.Domain.Subjects.Services;
+using Hakaton.Application.Helpers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Hakaton_UUNIT.Controllers;
@@ -19,7 +20,7 @@ public class SubjectsController : ControllerBase
     [ProducesResponseType(typeof(List<SubjectModel>),200)]
     public async Task<List<SubjectModel>> AllSubjects()
     {
-        return (await _subjectService.GetAll()).Select(it=> new SubjectModel
+        return (await _subjectService.GetAllAsync()).Select(it=> new SubjectModel
         {
             Title = it.Title,
             Description = it.Description,
@@ -32,7 +33,7 @@ public class SubjectsController : ControllerBase
     [HttpPost]
     public async Task<SubjectModel> AddSubject(SubjectAddModel model)
     {
-        var subject = await _subjectService.Add(model.Title, model.Description, model.ImageUrl);
+        var subject = await _subjectService.AddAsync(model.Title, model.Description, model.ImageUrl);
         return new SubjectModel
         {
             Title = subject.Title,
@@ -41,5 +42,11 @@ public class SubjectsController : ControllerBase
             CurrentProgress = 0,
             MaxProgress = 1
         };
+    }
+
+    [HttpDelete("id:guid")]
+    public async Task<OperationResult> Remove(Guid id)
+    {
+        return await _subjectService.RemoveAsync(id);
     }
 }
