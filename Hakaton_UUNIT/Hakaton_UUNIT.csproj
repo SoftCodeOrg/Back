@@ -27,4 +27,11 @@
       <ProjectReference Include="..\Hakaton.Infrastruct\Hakaton.Infrastruct.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Reference Include="Hakaton.Application">
+        <HintPath>..\Hakaton.Application\bin\Debug\net7.0\Hakaton.Application.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+
 </Project>

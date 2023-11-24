@@ -16,6 +16,11 @@ public class UsersService: IUsersService
         string username,
         string password)
     {
+        if (await _dataContext.Users.AnyAsync(it => it.Username == username))
+        {
+            throw new Exception("Пользователь с таким username зарегестрирован");
+        }
+        
         var newUser = new User(username, password);
         await _dataContext.Users.AddAsync(newUser);
         await _dataContext.SaveChangesAsync();
