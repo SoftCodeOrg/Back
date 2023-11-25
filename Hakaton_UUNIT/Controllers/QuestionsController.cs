@@ -17,7 +17,7 @@ public class QuestionsController : ControllerBase
         _dataContext = dataContext;
     }
 
-    [HttpGet("/subject/subjectId:guid/questions")]
+    [HttpGet("/subject/{subjectId:guid}/questions")]
     public async Task<IActionResult> GetQuestions([FromQuery]Guid subjectId)
     {
         var subject = await _dataContext.Subjects.Include(it => it.Questions).FirstOrDefaultAsync(it=>it.Id == subjectId);
@@ -30,7 +30,7 @@ public class QuestionsController : ControllerBase
         return Ok(subject.Questions);
     }
 
-    [HttpPost("/subject/subjectId:guid/questions")]
+    [HttpPost("/subject/{subjectId:guid}/questions")]
     public async Task<IActionResult> AddQuestion([FromQuery] Guid subjectId, [FromBody] QuestionAddModel model)
     {
         var subject = await _dataContext.Subjects.Include(it => it.Questions).FirstOrDefaultAsync(it=>it.Id == subjectId);
