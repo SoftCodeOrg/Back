@@ -26,7 +26,7 @@ public class SubjectsController : ControllerBase
             Description = it.Description,
             ImgUrl = it.ImageUrl,
             CurrentProgress = 0,
-            MaxProgress = it.Tests is not null ? it.MaxProgress.Value : 1
+            MaxProgress = it.Questions is not null ? it.MaxProgress.Value : 1
         }).ToList();
     }
 

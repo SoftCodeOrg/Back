@@ -10,4 +10,17 @@ public class Question
     
     public string Title { get; set; }
     public string[] Responses { get; set; }
+
+    public Question()
+    {
+        
+    }
+
+    public Question(
+        string title,
+        string[] responses)
+    {
+        Title = title;
+        Responses = responses;
+    }
 }

@@ -16,7 +16,7 @@ public class SubjectsService: ISubjectService
 
     public async Task<List<Subject>> GetAllAsync()
     {
-        return await _dataContext.Subjects.ToListAsync();
+        return await _dataContext.Subjects.Include(it=>it.Questions).ToListAsync();
     }
 
     public async Task<OperationResultEntity<Subject>> AddAsync(string title, string description, string imageUrl)

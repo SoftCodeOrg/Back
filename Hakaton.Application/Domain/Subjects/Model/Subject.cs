@@ -1,5 +1,5 @@
 using System.Text.Json.Serialization;
-using Hakaton.Application.Domain.Tests;
+using Hakaton.Application.Domain.Questions;
 
 namespace Hakaton.Application.Domain.Subjects.Model;
 
@@ -10,6 +10,6 @@ public class Subject
     public string Title { get; set; }
     public string Description { get; set; }
     public string ImageUrl { get; set; }
-    public List<Test>? Tests { get; set; }
-    public int? MaxProgress => Tests.Count;
+    public List<Question>? Questions { get; set; }
+    public int? MaxProgress => Questions.Count;
 }
