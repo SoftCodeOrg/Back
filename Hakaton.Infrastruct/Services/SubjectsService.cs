@@ -19,8 +19,14 @@ public class SubjectsService: ISubjectService
         return await _dataContext.Subjects.ToListAsync();
     }
 
-    public async Task<Subject> AddAsync(string title, string description, string imageUrl)
+    public async Task<OperationResultEntity<Subject>> AddAsync(string title, string description, string imageUrl)
     {
+        if (await _dataContext.Subjects.AnyAsync(
+                it => it.Title == title && it.Description == description && it.ImageUrl == imageUrl))
+        {
+            return new OperationResultEntity<Subject>("Подобный предмет уже существует.");
+        }
+        
         var subject = new Subject
         {
             Id = Guid.NewGuid(),
@@ -32,7 +38,7 @@ public class SubjectsService: ISubjectService
         await _dataContext.Subjects.AddAsync(subject);
         await _dataContext.SaveChangesAsync();
 
-        return subject;
+        return new OperationResultEntity<Subject>(subject);
     }
 
     public async Task<OperationResult> RemoveAsync(Guid id)

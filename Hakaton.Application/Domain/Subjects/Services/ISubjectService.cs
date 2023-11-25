@@ -6,6 +6,9 @@ namespace Hakaton.Application.Domain.Subjects.Services;
 public interface ISubjectService
 {
     public Task<List<Subject>> GetAllAsync();
-    public Task<Subject> AddAsync(string title, string description, string imageUrl);
+    public Task<OperationResultEntity<Subject>> AddAsync(
+        string title,
+        string description,
+        string imageUrl);
     public Task<OperationResult> RemoveAsync(Guid id);
 }

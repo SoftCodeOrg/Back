@@ -31,17 +31,25 @@ public class SubjectsController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<SubjectModel> AddSubject(SubjectAddModel model)
+    public async Task<IActionResult> AddSubject(SubjectAddModel model)
     {
-        var subject = await _subjectService.AddAsync(model.Title, model.Description, model.ImageUrl);
-        return new SubjectModel
+        var result = await _subjectService.AddAsync(model.Title, model.Description, model.ImageUrl);
+
+        if (!result.IsOk)
+        {
+            return BadRequest(result.Error);
+        }
+
+        var subject = result.Value;
+        
+        return Ok( new SubjectModel
         {
             Title = subject.Title,
             Description = subject.Description,
             ImgUrl = subject.ImageUrl,
             CurrentProgress = 0,
             MaxProgress = 1
-        };
+        });
     }
 
     [HttpDelete("id:guid")]
