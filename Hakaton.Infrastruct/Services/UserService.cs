@@ -1,4 +1,3 @@
-using Hakaton.Application.Domain.Progress;
 using Hakaton.Application.Domain.Users;
 using Microsoft.EntityFrameworkCore;
 
@@ -24,11 +23,6 @@ public class UserService: IUserService
         
         var newUser = new User(username, password);
         await _dataContext.Users.AddAsync(newUser);
-
-        var subjectsProgress =
-            await _dataContext.Subjects.Select(it => new TestProgress(newUser.Id, it.Id)).ToListAsync();
-
-        await _dataContext.UserTestProgresses.AddRangeAsync(subjectsProgress);
             
         await _dataContext.SaveChangesAsync();
         return newUser;

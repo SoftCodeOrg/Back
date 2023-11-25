@@ -1,4 +1,3 @@
-using Hakaton.Application.Domain.Progress;
 using Hakaton.Application.Domain.Questions;
 using Hakaton.Application.Domain.Subjects.Model;
 using Hakaton.Application.Domain.Tests;
@@ -11,7 +10,6 @@ namespace Hakaton.Infrastruct;
 public class DataContext: DbContext
 {
     public DbSet<User> Users { get; set; }
-    public DbSet<TestProgress> UserTestProgresses { get; set; }
     public DbSet<Subject> Subjects { get; set; }
     public DbSet<Test> Tests { get; set; }
     public DbSet<Question> Questions { get; set; }
