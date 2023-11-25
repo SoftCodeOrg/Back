@@ -10,6 +10,8 @@ public class Question
     
     public string Title { get; set; }
     public string[] Responses { get; set; }
+    
+    public int TrueResponseIndex { get; set; }
 
     public Question()
     {
@@ -18,9 +20,11 @@ public class Question
 
     public Question(
         string title,
-        string[] responses)
+        string[] responses,
+        int trueResponseIndex)
     {
         Title = title;
         Responses = responses;
+        TrueResponseIndex = trueResponseIndex;
     }
 }

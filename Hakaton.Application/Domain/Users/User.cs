@@ -4,7 +4,6 @@ namespace Hakaton.Application.Domain.Users;
 
 public class User
 {
-    [JsonIgnore]
     public Guid Id { get; set; }
     
     public string Username { get; set; }

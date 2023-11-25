@@ -40,7 +40,7 @@ public class QuestionsController : ControllerBase
             return NotFound("Не найден");
         }
 
-        var question = new Question(model.Title, model.Response);
+        var question = new Question(model.Title, model.Response, model.TrueResponseIndex);
         
         subject.Questions.Add(question);
 
