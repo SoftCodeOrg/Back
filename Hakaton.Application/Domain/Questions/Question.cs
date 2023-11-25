@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using Hakaton.Application.Domain.Subjects.Model;
 using Hakaton.Application.Domain.Tests;
 
@@ -7,6 +8,7 @@ public class Question
 {
     public Guid Id { get; set; }
     public Guid SubjectId { get; set; }
+    [JsonIgnore]
     public Subject? Subject { get; set; }
     
     public string Title { get; set; }
