@@ -2,6 +2,7 @@ using Hakaton_UUNIT.HostedServices;
 using Hakaton.Infrastruct;
 using Hakaton.Infrastruct.Options;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -79,8 +80,6 @@ if (app.Environment.IsDevelopment())
 app.UseForwardedHeaders(new ForwardedHeadersOptions {
     ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
 });
-
-app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
